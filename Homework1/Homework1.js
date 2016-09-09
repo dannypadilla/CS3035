@@ -13,8 +13,13 @@ rl.on("line",
 	}
 
 	// Your gameplay goes here
+	// initialize pot ($) value
+	var pot = 200;
+	// user
+	// Deck object
        	var Deck = {
 	    drawnCards: [],
+	    shuffledCards: [],
 	    suites: {
 		0: "Hearts",
 		1: "Diamonds",
@@ -22,6 +27,13 @@ rl.on("line",
 		3: "Clubs" },
 	    rankNumbers: [2, 3, 4, 5, 6, 7, 8, 9,
 			  10, "J", "Q", "K", "A"],
+	    // initialize deck for later shuffling
+	    makeDeck: function() {
+		for(var i = 0; i < 52; i++) {
+		    this.shuffledCards.push(i);
+		    //		    console.log(this.shuffledCards[i]);
+		}
+	    },
 	    // print out deck
 	    printDeck: function(rank, suite) {
 		return this.rankNumbers[rank] + " of " + this.suites[suite];
@@ -34,9 +46,25 @@ rl.on("line",
 				" of " + this.suites[i] );
 		    }
 		}
+	    },
+	    shuffleCards: function() {
+		for(var x = 0; x < this.shuffledCards.length; x++) {
+		    // create random num between 0 and 51
+		    var ran = Math.floor(Math.random() * this.shuffledCards.length );
+		    // store current value at [x] for later paste
+		    var temp = this.shuffledCards[x];
+		    // assign value at [randomNumber] to [x]
+		    this.shuffledCards[x] = this.shuffledCards[ran];
+		    // store old value [x] to location of [randomNumber]
+		    this.shuffledCards[ran] = temp;
+		    // print with console log for testing
+		    // console.log(this.shuffledCards[x]);
+		    // console.log(this.shuffledCards[ran]);
+		}
 	    }
 	};
-	console.log(Deck.printAll() );
+	var deck = Deck;
+	deck.makeDeck();
 
 	//ask a user something in the middle of this callback
 	rl.question("How much do you want to bet?",
