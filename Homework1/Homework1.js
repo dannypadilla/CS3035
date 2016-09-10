@@ -42,7 +42,7 @@ rl.on("line",
 	    },
 	    // takes a value and returns the rank
 	    getRank: function(rank) {
-		return this.rankNumbers[Math.floor(rank / this.rankNumbers.length)];
+		return this.rankNumbers[Math.floor(rank % this.rankNumbers.length)];
 	    },
 	    // print out entire deck; suite and rank
 	    printAll: function() {
@@ -69,6 +69,7 @@ rl.on("line",
 	};
 	var deck = Deck;
 	deck.makeDeck();
+	deck.shuffleCards();
 	console.log(deck.printAll() );
 
 	//ask a user something in the middle of this callback
