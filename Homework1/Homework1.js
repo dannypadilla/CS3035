@@ -27,24 +27,28 @@ rl.on("line",
 		3: "Clubs" },
 	    rankNumbers: [2, 3, 4, 5, 6, 7, 8, 9,
 			  10, "J", "Q", "K", "A"],
+	    size: function() {
+		return shuffledCards.length;
+	    },
 	    // initialize deck for later shuffling
 	    makeDeck: function() {
 		for(var i = 0; i < 52; i++) {
 		    this.shuffledCards.push(i);
-		    //		    console.log(this.shuffledCards[i]);
 		}
 	    },
-	    // print out deck
-	    printDeck: function(rank, suite) {
-		return this.rankNumbers[rank] + " of " + this.suites[suite];
+	    // takes a value and returns the suite
+	    getSuite: function(suite) {
+		return this.suites[Math.floor(suite / this.rankNumbers.length)];
 	    },
-	    // print out entire deck
+	    // takes a value and returns the rank
+	    getRank: function(rank) {
+		return this.rankNumbers[Math.floor(rank / this.rankNumbers.length)];
+	    },
+	    // print out entire deck; suite and rank
 	    printAll: function() {
-		for(var i = 0; i < 4; i ++) {
-		    for(var j = 0; j < this.rankNumbers.length; j++) {
-			console.log(this.rankNumbers[j] +
-				" of " + this.suites[i] );
-		    }
+		for(var i = 0; i < this.shuffledCards.length; i ++) {
+		    console.log(this.getRank(this.shuffledCards[i]) + 
+				" of " + this.getSuite(this.shuffledCards[i]) );
 		}
 	    },
 	    shuffleCards: function() {
@@ -65,6 +69,7 @@ rl.on("line",
 	};
 	var deck = Deck;
 	deck.makeDeck();
+	console.log(deck.printAll() );
 
 	//ask a user something in the middle of this callback
 	rl.question("How much do you want to bet?",
