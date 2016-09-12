@@ -21,15 +21,15 @@ rl.on("line",
 	    drawnCards: [],
 	    shuffledCards: [],
 	    suites: {
-		0: "Hearts",
-		1: "Diamonds",
-		2: "Spade",
-		3: "Clubs" },
+		0: "Diamonds",
+		1: "Clubs",
+		2: "Hearts",
+		3: "Spade" },
 	    rankNumbers: [2, 3, 4, 5, 6, 7, 8, 9,
 			  10, "J", "Q", "K", "A"],
 	    size: function() {
 		return shuffledCards.length;
-	    },
+	    },n
 	    // initialize deck for later shuffling
 	    makeDeck: function() {
 		for(var i = 0; i < 52; i++) {
@@ -68,9 +68,11 @@ rl.on("line",
 	    }
 	};
 	var deck = Deck;
+	var deck2 = Deck;
 	deck.makeDeck();
 	deck.shuffleCards();
-	console.log(deck.printAll() );
+	deck2.makeDeck();
+	console.log(deck2.printAll() );
 
 	//ask a user something in the middle of this callback
 	rl.question("How much do you want to bet?",
