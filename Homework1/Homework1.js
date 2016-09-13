@@ -15,10 +15,9 @@ rl.on("line",
 	// Your gameplay goes here
 	// initialize pot ($) value
 	var pot = 200;
-	// user
+	var player = 50;
 	// Deck object
        	var Deck = {
-	    drawnCards: [],
 	    shuffledCards: [],
 	    suites: {
 		0: "Diamonds",
@@ -28,8 +27,8 @@ rl.on("line",
 	    rankNumbers: [2, 3, 4, 5, 6, 7, 8, 9,
 			  10, "J", "Q", "K", "A"],
 	    size: function() {
-		return shuffledCards.length;
-	    },n
+		return this.shuffledCards.length;
+	    },
 	    // initialize deck for later shuffling
 	    makeDeck: function() {
 		for(var i = 0; i < 52; i++) {
@@ -44,14 +43,20 @@ rl.on("line",
 	    getRank: function(rank) {
 		return this.rankNumbers[Math.floor(rank % this.rankNumbers.length)];
 	    },
-	    // print out entire deck; suite and rank
+	    // print out entire deck; each suite along with each rank
 	    printAll: function() {
-		for(var i = 0; i < this.shuffledCards.length; i ++) {
-		    console.log(this.getRank(this.shuffledCards[i]) + 
-				" of " + this.getSuite(this.shuffledCards[i]) );
+		for(var i = 0; i < this.size(); i++) {
+		    this.print(i);
 		}
 	    },
-	    shuffleCards: function() {
+	    print: function(card) {
+		console.log(this.getRank(this.shuffledCards[card] +
+					 " of " + this.getSuite(this.shuffledCards[card]) ));
+		console.log(card);
+		console.log(this.shuffledCards[card]);
+		console.log(this.getRank(this.shuffleCards[card]));
+	    },
+	    shuffleDeck: function() {
 		for(var x = 0; x < this.shuffledCards.length; x++) {
 		    // create random num between 0 and 51
 		    var ran = Math.floor(Math.random() * this.shuffledCards.length );
@@ -61,19 +66,24 @@ rl.on("line",
 		    this.shuffledCards[x] = this.shuffledCards[ran];
 		    // store old value [x] to location of [randomNumber]
 		    this.shuffledCards[ran] = temp;
-		    // print with console log for testing
-		    // console.log(this.shuffledCards[x]);
-		    // console.log(this.shuffledCards[ran]);
+		}
+	    },
+	    drawCard: function() {
+		if(this.size === 0) {
+		    return "No Cards Left";
+		} else {
+		    return this.shuffledCards.pop();
 		}
 	    }
 	};
 	var deck = Deck;
-	var deck2 = Deck;
 	deck.makeDeck();
-	deck.shuffleCards();
-	deck2.makeDeck();
-	console.log(deck2.printAll() );
+	deck.shuffleDeck();
+	deck.print(4);
+	// Game Logic
+	if (deck.size() < 3) {
 
+	}
 	//ask a user something in the middle of this callback
 	rl.question("How much do you want to bet?",
 		    function(number) {
