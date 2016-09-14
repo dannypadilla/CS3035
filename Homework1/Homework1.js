@@ -50,11 +50,7 @@ rl.on("line",
 		}
 	    },
 	    print: function(card) {
-		console.log(this.getRank(this.shuffledCards[card] +
-					 " of " + this.getSuite(this.shuffledCards[card]) ));
-		console.log(card);
-		console.log(this.shuffledCards[card]);
-		console.log(this.getRank(this.shuffleCards[card]));
+		console.log(this.getRank(this.shuffledCards[card]) + " of " + this.getSuite(this.shuffledCards[card]) );
 	    },
 	    shuffleDeck: function() {
 		for(var x = 0; x < this.shuffledCards.length; x++) {
