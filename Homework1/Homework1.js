@@ -6,18 +6,14 @@ var rl = readline.createInterface(process.stdin, process.stdout);
 console.log("Welcome! Enter 1 to continue, 0 to quit");
 rl.setPrompt("AceyDeucy> ");
 rl.prompt();
-rl.on("line",
-      function(line) {
-	if (line === "0") {
-	    rl.close();
-	}
+
 
 	// Your gameplay goes here
 	// initialize pot ($) value
 	var pot = 200;
 	var player = 50;
 	// Deck object
-       	var Deck = {
+       	var deck = {
 	    shuffledCards: [],
 	    suites: {
 		0: "Diamonds",
@@ -72,25 +68,27 @@ rl.on("line",
 		}
 	    }
 	};
-	var deck = Deck;
-	deck.makeDeck();
-	deck.shuffleDeck();
-	deck.print(4);
-	// Game Logic
-	if (deck.size() < 3) {
-
+deck.makeDeck();
+deck.shuffleDeck();
+rl.on("line",
+      function(line) {
+	if (line === "0") {
+	    rl.close();
 	}
+
 	//ask a user something in the middle of this callback
-	rl.question("How much do you want to bet?",
+	rl.question("How much do you want to bet? ",
 		    function(number) {
 			//get info here, finish round so that it stays in sync.
-			console.log(number);
-			console.log("Enter 1 to play again, 0 to quit");
+			deck.printAll();
+			deck.drawCard();
+			//console.log(number);
+			console.log("Enter 1 to play again, 0 to quit ");
 			rl.prompt();
 		    });
       }).on("close",
 	    function() {
 		    // anything you want to have happen when the game ends here
-		console.log("Thanks!");		
+		console.log("Cya!");		
 		process.exit(0);
 	    });
