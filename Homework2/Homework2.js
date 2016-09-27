@@ -1,8 +1,4 @@
-var restaurants = [];
-restaurants.push([new TextCell("Bucco de\nBeppo"), new TextCell("$$$")]);
-restaurants.push([new TextCell("Denny's"), new TextCell("$$")]);
-console.log(restaurants);
-
+// Homework #2
 
 function rowHeights(rows) {
   return rows.map(function(row) {
@@ -113,9 +109,14 @@ RTextCell.prototype.draw = function(width, height) {
   var result = [];
   for (var i = 0; i < height; i++) {
     var line = this.text[i] || "";
-    result.push(repeat(" ", width - line.length) + line);
+    result.push(repeat(" ", Math.floor(width - line.length), " ") );
   }
   return result;
 };
+
+var restaurants = [];
+restaurants.push([new RTextCell("Bucca de\nBeppo"), new RTextCell("$$$$")]);
+restaurants.push([new RTextCell("Denny's"), new RTextCell("$")]);
+//console.log(restaurants);
 
 console.log(drawTable(restaurants));
