@@ -91,7 +91,7 @@ function dataTable(data) {
     return keys.map(function(name) {
       var value = row[name];
       if (typeof value == "number")
-        return new RTextCell(String(value));
+        return new CenteredTextCell(String(value));
       else
         return new TextCell(String(value));
     });
@@ -100,23 +100,73 @@ function dataTable(data) {
 }
 
 function RTextCell(text) {
-  TextCell.call(this, text);
+    TextCell.call(this, text);
 }
 
 RTextCell.prototype = Object.create(TextCell.prototype);
 
 RTextCell.prototype.draw = function(width, height) {
+    var result = [];
+    for (var i = 0; i < height; i++) {
+	var line = this.text[i] || "";
+	result.push(repeat(" ", width - line.length) + line);
+    }
+    return result;
+};
+
+// Problem 1
+function CenteredTextCell(text) {
+  TextCell.call(this, text);
+}
+
+CenteredTextCell.prototype = Object.create(TextCell.prototype);
+
+CenteredTextCell.prototype.draw = function(width, height) {
   var result = [];
   for (var i = 0; i < height; i++) {
     var line = this.text[i] || "";
-    result.push(repeat(" ", Math.floor(width - line.length), " ") );
+    result.push( repeat(" ", Math.floor((width - line.length) / 2) ) + line +  repeat(" ", (width - line.length) / 2) );
   }
   return result;
 };
 
-var restaurants = [];
-restaurants.push([new RTextCell("Bucca de\nBeppo"), new RTextCell("$$$$")]);
-restaurants.push([new RTextCell("Denny's"), new RTextCell("$")]);
-//console.log(restaurants);
+var restaurants1 = [];
 
-console.log(drawTable(restaurants));
+console.log("Problem # 1:");
+restaurants1.push([new CenteredTextCell("Mastro's Ocean\nClub"), new CenteredTextCell("$$$$")]);
+restaurants1.push([new CenteredTextCell("Denny's"), new CenteredTextCell("$")]);
+//restaurants1.push([new CenteredTextCell("Bucca de\nBeppo"), new CenteredTextCell("$$")]);
+
+console.log(drawTable(restaurants1));
+
+// Problem 2
+
+var restaurants2 = [];
+
+function BorderedCell(text) {
+    this.text = text.split("\n");
+}
+
+BorderedCell.prototype.minWidth = function() {
+    return this.text.reduce(function(width, line) {
+	return Math.max(width, line.length);
+    }, 0);
+};
+
+BorderedCell.prototype.minHeight = function() {
+    return this.text.length;
+};
+
+BorderedCell.prototype.draw = function(width, height) {
+    var result = [];
+    for (var i = 0; i < height; i++) {
+	var line = this.text[i] || "";
+	result.push("|" + repeat(width - line.length ) + line + "|" );
+    }
+    return result;
+};
+console.log();
+console.log("Problem #2:");
+restaurants2.push([new BorderedCell("Mastro's Ocean\nClub"), new BorderedCell("$$$$")]);
+restaurants2.push([new BorderedCell("Denny's"), new BorderedCell("$")]);
+console.log(drawTable(restaurants2));
