@@ -90,9 +90,9 @@ function dataTable(data) {
   var body = data.map(function(row) {
     return keys.map(function(name) {
       var value = row[name];
-      if (typeof value == "number")
-        return new CenteredTextCell(String(value));
-      else
+//      if (typeof value == "number")
+//        return new BorderedCell(String(value));
+//      else
         return new TextCell(String(value));
     });
   });
@@ -131,11 +131,10 @@ CenteredTextCell.prototype.draw = function(width, height) {
 };
 
 var restaurants1 = [];
-
+console.log();
 console.log("Problem # 1:");
 restaurants1.push([new CenteredTextCell("Mastro's Ocean\nClub"), new CenteredTextCell("$$$$")]);
 restaurants1.push([new CenteredTextCell("Denny's"), new CenteredTextCell("$")]);
-//restaurants1.push([new CenteredTextCell("Bucca de\nBeppo"), new CenteredTextCell("$$")]);
 
 console.log(drawTable(restaurants1));
 
@@ -147,22 +146,16 @@ function BorderedCell(text) {
     this.text = text.split("\n");
 }
 
-BorderedCell.prototype.minWidth = function() {
-    return this.text.reduce(function(width, line) {
-	return Math.max(width, line.length);
-    }, 0);
-};
-
-BorderedCell.prototype.minHeight = function() {
-    return this.text.length;
-};
+BorderedCell.prototype = Object.create(TextCell.prototype);
 
 BorderedCell.prototype.draw = function(width, height) {
     var result = [];
+    result.push("-".repeat(width + 2) );
     for (var i = 0; i < height; i++) {
 	var line = this.text[i] || "";
-	result.push("|" + repeat(width - line.length ) + line + "|" );
+	result.push("|" + line + repeat(" ", width - line.length ) + "|" );
     }
+    result.push("-".repeat(width + 2) );
     return result;
 };
 console.log();
@@ -170,3 +163,9 @@ console.log("Problem #2:");
 restaurants2.push([new BorderedCell("Mastro's Ocean\nClub"), new BorderedCell("$$$$")]);
 restaurants2.push([new BorderedCell("Denny's"), new BorderedCell("$")]);
 console.log(drawTable(restaurants2));
+
+// Problem 3
+
+
+
+console.log();
