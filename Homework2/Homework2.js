@@ -166,6 +166,53 @@ console.log(drawTable(restaurants2));
 
 // Problem 3
 
+console.log();
+console.log("Problem #3:");
 
+var upper = [];
+upper.push([new BorderedCell("Mastro's Ocean\nClub"), new BorderedCell("$$$$")]);
+upper.push([new BorderedCell("Denny's"), new BorderedCell("$")]);
+
+//console.log(drawTable(upper));
+//console.log(upper[0][0].text[0].toUpperCase());
+console.log();
+console.log("Entire array");
+console.log(upper);
+console.log("Each Row");
+console.log(upper[0]);
+console.log("Each TextCell Object");
+console.log(upper[0][0]);
+console.log("text property");
+console.log(upper[0][0].text);
+
+function cellToUpperCase(dataArray, rowNum) {
+    return dataArray[rowNum].map(function(x) {
+	return x.text[0].toUpperCase();
+    });
+}
+
+console.log();
+console.log("ToUpperCase Call");
+//console.log(cellToUpperCase(upper, 1));
+
+console.log(drawTable(cellToUpperCase(upper, 1)));
+
+// Problem 5
+console.log();
+console.log("Problem #5:");
+var people = []; 
+var person = [
+    {"name": "Carolus Haverbeke", "sex": "m", "born": 1832, "died": 1905, "father": "Carel Haverbeke", "mother": "Maria van Brussel"},
+    {"name": "Emma de Milliano", "sex": "f", "born": 1876, "died": 1956, "father": "Petrus de Milliano", "mother": "Sophia van Damme"},
+    {"name": "Maria de Rycke", "sex": "f", "born": 1683, "died": 1724, "father": "Frederik de Rycke", "mother": "Laurentia van Vlaenderen"},
+    {"name": "Jan van Brussel", "sex": "m", "born": 1714, "died": 1748, "father": "Jacobus van Brussel", "mother": "Joanna van Rooten"},
+    {"name": "Philibert Haverbeke", "sex": "m", "born": 1907, "died": 1997, "father": "Emile Haverbeke", "mother": "Emma de Milliano"},
+    {"name": "Clara Aernoudts", "sex": "f", "born": 1918, "died": 2012, "father": "Henry Aernoudts", "mother": "Sidonie Coene"},
+    {"name": "Emile Haverbeke", "sex": "m", "born": 1877, "died": 1968, "father": "Carolus Haverbeke", "mother": "Maria Sturm"},
+    {"name": "Lieven de Causmaecker", "sex": "m", "born": 1696, "died": 1724, "father": "Carel de Causmaecker", "mother": "Joanna Claes"},
+    {"name": "Livina Haverbeke", "sex": "f", "born": 1692, "died": 1743, "father": "Daniel Haverbeke", "mother": "Joanna de Pape"}
+];
+
+//theEnd
 
 console.log();
