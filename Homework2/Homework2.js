@@ -1,5 +1,5 @@
 // Homework #2
-"use strict";
+
 function rowHeights(rows) {
   return rows.map(function(row) {
     return row.reduce(function(max, cell) {
@@ -175,14 +175,6 @@ function rowToUpperCase(dataArray, rowNum) {
     });
 }
 
-/*
-function cellToUpperCase(dataArray, rowNum) {
-    return dataArray[rowNum].map(function(x) {
-	return x.text[0].toUpperCase();
-    });
-}
-*/
-
 // Problem 4
 
 function columnToUpperCase(dataArray, colNum) {
@@ -227,13 +219,19 @@ var people = person.map(function(personRow) {
 //console.log(people[0][0]);
 //console.log(people);
 
-console.log(drawTable(people));
+console.log(drawTable(people) );
 
 // Problem # 6
 console.log();
 console.log("Problem #6:");
-//console.log(rowToUpperCase(people, 2) );
-//console.log(columnToUpperCase(people, 2) );
+console.log();
+console.log("UpperCase Row 1:");
+console.log();
+console.log(rowToUpperCase(people, 0) );
+console.log();
+console.log("UpperCase Column 3:");
+console.log();
+console.log(columnToUpperCase(people, 2) );
 
 //theEnd
 console.log();
