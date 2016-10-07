@@ -5,7 +5,6 @@
 // Part 1
 
 function sentenceToArray(sentence) {
-    // generate random number
     var ranNum = Math.floor(Math.random() * 4);
 //    console.log(ranNum);
     if (ranNum < 3) {
@@ -32,7 +31,7 @@ function wrapper(sentence) {
 	try {
 	    return sentenceToArray(sentence);
 	} catch(TestError) {
-//	    console.log(TestError);
+	    console.log(TestError.message);
 	}
     }
 }
