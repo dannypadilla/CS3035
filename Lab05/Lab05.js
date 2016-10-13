@@ -5,7 +5,26 @@ $(document).ready(function() {
     var email = $("#email_address").val();
     var isValid = true;
 
-    
+    if(firstName == "") {
+      $("#first_name").next().text("This field cannot be empty.");
+      isValid = false;
+    } else {
+      $("#first_name").next().text("");
+    }
+
+    if(lastName == "") {
+      $("#last_name").next().text("This field cannot be empty.");
+      isValid = false;
+    } else {
+      $("#last_name").next().text("");
+    }
+
+    if(email == "") {
+      $("#email_address").next().text("This field cannot be empty.");
+      isValid = false;
+    } else {
+      $("#email_address").next().text("");
+    }
 
     if(isValid) {
       drawTable(firstName, lastName, email);
