@@ -15,12 +15,12 @@ app.get("/contactList", function(request, response) {
 	name: "Rick",
 	email: "bro@bruh.br",
 	number: "111-111-1111"
-    },
+    };
     person2 = {
 	name: "Rhianna",
-	email: "rhi@hoIsList.ho",
+	email: "rhi@hoIsLife.ho",
 	number: "222-222-2222"
-    },
+    };
     person3 = {
 	name: "Roy O",
 	email: "Orbison@son.com",
