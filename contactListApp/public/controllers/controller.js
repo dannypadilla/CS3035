@@ -20,5 +20,12 @@ myApp.controller("AppCtrl", ["$scope", "$http",
 				     });
 				 };
 
+				 $scope.remove = function(id) {
+				     console.log(id);
+				     $http.delete("/contactList" + id).success(function(response) {
+					 refresh();
+				     });
+				 };
+
 			     }]);
 
